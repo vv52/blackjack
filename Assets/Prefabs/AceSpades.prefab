@@ -144,4 +144,4 @@ MonoBehaviour:
     type: 3}
   cardBack: {fileID: 21300000, guid: 186203c48c728544e835131fc09a224f, type: 3}
   isAce: 1
-  cardValue: 1
+  cardValue: 11
