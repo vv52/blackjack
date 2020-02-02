@@ -16,13 +16,13 @@ public class CardFlipper : MonoBehaviour
         cardModel = GetComponent<CardModel>();
     }
 
-    public void flipCard(Sprite startImage, Sprite endImage, int cardIndex)
+    public void flipCard(Sprite startImage, Sprite endImage, bool showFace)
     {
-        StopCoroutine(Flip(startImage, endImage, cardIndex));
-        StartCoroutine(Flip(startImage, endImage, cardIndex));
+        StopCoroutine(Flip(startImage, endImage, showFace));
+        StartCoroutine(Flip(startImage, endImage, showFace));
     }
 
-    IEnumerator Flip(Sprite startImage, Sprite endImage, int cardIndex)
+    IEnumerator Flip(Sprite startImage, Sprite endImage, bool showFace)
     {
         spriteRenderer.sprite = startImage;
 
@@ -44,13 +44,12 @@ public class CardFlipper : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        if (cardIndex == -1)
+        if (showFace == false)
         {
             cardModel.ToggleFace(false);
         }
         else
         {
-            cardModel.cardIndex = cardIndex;
             cardModel.ToggleFace(true);
         }
     }
