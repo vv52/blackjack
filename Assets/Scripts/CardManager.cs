@@ -17,13 +17,13 @@ public class CardManager : MonoBehaviour
         playedCards.Add(cardIndex);
     }
 
-    bool CheckIfPlayed(int cardIndex)
+    public bool CheckIfPlayed(CardModel card)
     {
         bool isPlayed = false;
 
         for (int i = 0; i < playedCards.Count; i++)
         {
-            if (playedCards[i] == cardIndex)
+            if (playedCards[i] == card.cardIndex)
             {
                 isPlayed = true;
             }
