@@ -12,11 +12,13 @@ public class CardModel : MonoBehaviour
     public int cardValue;
 
     SpriteRenderer spriteRenderer;
+    CardFlipper cardFlipper;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        ToggleFace(true);
+        cardFlipper = GetComponent<CardFlipper>();
+        cardFlipper.flipCard(cardBack, cardFace, true);
     }
 
     public void ToggleFace(bool showFace)

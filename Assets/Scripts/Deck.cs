@@ -55,9 +55,11 @@ public class Deck : MonoBehaviour
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 10, 100, 28), "Draw"))
+        if (GUI.Button(new Rect(10, 10, 100, 28), "Deal Cards"))
         {
             DrawCard();
         }
+
+        //TODO: add more GUI elements for "Hit", "Stay", etc.
     }
 }
