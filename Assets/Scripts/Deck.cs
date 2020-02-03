@@ -10,6 +10,7 @@ public class Deck : MonoBehaviour
     private List<int> playerCards;
     private List<int> dealerCards;
     public GameObject gameBoard;
+    public GameObject CardModel;
     
     private SpriteRenderer spriteRenderer;
     private CardModel cardModel;
@@ -66,8 +67,7 @@ public class Deck : MonoBehaviour
             dealerCard.transform.SetParent(gameBoard.transform, false);
             if (showFace == false)
             {
-                //cardModel = GetComponent<CardModel>();
-                //cardModel.ToggleFace(false);
+                //TODO: display cardBack
             }
 
             playedCards.Add(temp);
@@ -97,12 +97,50 @@ public class Deck : MonoBehaviour
     {
         if (GUI.Button(new Rect(10, 10, 100, 28), "Deal Cards"))
         {
+            int playerScore = 0;
+            int dealerScore = 0;
+
             PlayerDrawCard(-2, -1);
             PlayerDrawCard(-1, -1);
             DealerDrawCard(0, 1, true);
             DealerDrawCard(1, 1, false);
+
+            if (CheckCardValue(playerCards) < 21)
+            {
+                playerScore = CheckCardValue(playerCards);
+                //HitCycle(playerCards);
+            }
+            else
+            {
+                playerScore = 21;
+                //Blackjack();
+            }
+            if (CheckCardValue(dealerCards) < 21)
+            {
+                dealerScore = CheckCardValue(dealerCards);
+                //HitCycle(dealerCards);
+            }
+            else
+            {
+                dealerScore = 21;
+                //Blackjack();
+            }
+            //ResolveTurn(playerScore, dealerScore);
         }
 
         //TODO: add more GUI elements for "Hit", "Stay", etc.
+    }
+
+    int CheckCardValue(List<int> cardsList)
+    {
+        int value = 0;
+
+        for (int i = 0; i < cardsList.Count; i++)
+        {
+            cardModel = cards[cardsList[i]].GetComponent<CardModel>();
+            value += cardModel.cardValue;
+        }
+
+        return value;
     }
 }
